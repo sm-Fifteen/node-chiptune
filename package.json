@@ -1,13 +1,13 @@
 {
-  "name": "node-chiptune",
-  "version": "1.0.0",
-  "description": "Convert tracker music to PCM streams",
+  "name": "node-libopenmpt",
+  "version": "0.2.0",
+  "description": "A JS wrapper for libopenmpt, to enable decoding and playing tracker modules using node.",
   "main": "index.js",
-  "author": "Guichaguri",
+  "author": "Guichaguri and sm-Fifteen",
   "license": "LGPL-2.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Guichaguri/node-chiptune.git"
+    "url": "git+https://github.com/sm-Fifteen/node-libopenmpt.git"
   },
   "dependencies": {
     "libopenmpt": "file:./libopenmpt"
@@ -25,8 +25,5 @@
     "libopenmpt",
     "chiptunes"
   ],
-  "bugs": {
-    "url": "https://github.com/Guichaguri/node-chiptune/issues"
-  },
-  "homepage": "https://github.com/Guichaguri/node-chiptune#readme"
+  "homepage": "https://github.com/sm-Fifteen/node-libopenmpt#readme"
 }

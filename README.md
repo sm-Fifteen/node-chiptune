@@ -1,8 +1,8 @@
-# node-chiptune
-[![NPM](https://nodei.co/npm/node-chiptune.png)](https://nodei.co/npm/node-chiptune/)
+# node-libopenmpt
 
-Convert tracker music to PCM streams in Node.js.
-[Emscripten](https://github.com/kripken/emscripten) was used to translate [libopenmpt](http://lib.openmpt.org/libopenmpt) to Javascript.
+A JS wrapper for libopenmpt, to enable decoding and playing tracker modules using node.
+
+A fork from Guichaguri's [node-chiptune](https://github.com/Guichaguri/node-chiptune).
 
 If you are looking for a HTML5 player to play tracker music, check out [Chiptune2.js](https://github.com/deskjet/chiptune2.js)
 
@@ -26,14 +26,19 @@ fs.readFile('file.mod', function(err, data) {
         chiptuneStream.pipe(new Speaker());
     }
 });
+
+fs.readFile('file.mod', function(err, data) {
+    if(err != null) {
+        console.log(err);
+    } else {
+        var module = new OpenMTP_Module(data);
+        var chiptuneStream = module.openAsStream();
+		
+		chiptuneStream.pipe(new Speaker());
+    }
+});
 ```
 
 ## Supported formats
-Basically all the formats supported by libopenmpt, here is the list:
-
-`mod s3m xm it mptm stm nst m15 stk wow ult 669 mtm med far mdl ams dsm amf okt dmf ptm psm mt2 dbm digi imf j2b gdm umx plm mo3 xpk ppm mmcmp`
-
-## Thanks to
-
-* [Deskjet](https://github.com/deskjet) for helping me understand how libopenmpt works
-* [OpenMPT](http://openmpt.org/) for their library that made this project possible
+All sound tracker module formats (meaning not MIDI or ABC) supported by
+libOpenMTP should work.
