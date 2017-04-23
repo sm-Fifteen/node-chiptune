@@ -9,6 +9,12 @@
     "type": "git",
     "url": "git+https://github.com/Guichaguri/node-chiptune.git"
   },
+  "dependencies": {
+    "libopenmpt": "file:./libopenmpt"
+  },
+  "bundledDependencies": [
+    "libopenmpt"
+  ],
   "keywords": [
     "chiptune",
     "tracker",

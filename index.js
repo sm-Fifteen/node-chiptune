@@ -1,5 +1,5 @@
 const stream = require('stream');
-const native = require('./libopenmpt.js');
+const native = require('libopenmpt');
 
 module.exports = OpenMPT_Module;
 

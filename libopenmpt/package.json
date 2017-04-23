@@ -1,0 +1,13 @@
+{
+  "name": "libopenmpt",
+  "version": "2.22.155",
+  "description": "Cross-platform C++ and C library to decode tracked music files",
+  "main": "libopenmpt.js",
+  "author": "OpenMPT contributors",
+  "license": "BSD",
+  "repository": {
+    "type": "svn",
+    "url": "source.openmpt.org/svn/openmpt/"
+  },
+  "homepage": "https://openmpt.org/"
+}
