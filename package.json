@@ -10,7 +10,7 @@
     "url": "git+https://github.com/sm-Fifteen/node-libopenmpt.git"
   },
   "dependencies": {
-    "libopenmpt": "file:libopenmpt"
+    "libopenmpt": "^2.22.155"
   },
   "bundledDependencies": [
     "libopenmpt"
