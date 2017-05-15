@@ -94,8 +94,43 @@ OpenMPT_Module.prototype = {
 			native._free(buf);
 		}
 		return metadata;
+	},
+	get ctls() {
+		const ctls = {};
+		const ctlList = native.Pointer_stringify(native._openmpt_module_get_ctls(this.mod_ptr)).split(';');
+		const mod_ptr = this.mod_ptr;
+		
+		ctlList.forEach(function(ctlKey){			
+			Object.defineProperty(ctls, ctlKey, {
+				configurable : false,
+				enumerable : true,
+				get : function(){
+					const keyBuf = native._malloc(ctlKey.length + 1);
+					native.writeStringToMemory(ctlKey, keyBuf);
+					
+					const val = native.Pointer_stringify(native._openmpt_module_ctl_get(mod_ptr, keyBuf));
+					
+					native._free(keyBuf);
+					return val;
+				},
+				set : function(ctlVal){
+					const keyBuf = native._malloc(ctlKey.length + 1);
+					const valBuf = native._malloc(ctlVal.length + 1);
+					native.writeStringToMemory(ctlKey, keyBuf);
+					native.writeStringToMemory(ctlVal, valBuf);
+					
+					native._openmpt_module_ctl_set(mod_ptr, keyBuf, valBuf);
+					
+					native._free(keyBuf);
+					native._free(valBuf);
+				}
+			})
+		})
+		
+		return ctls;
 	}
 }
+
 
 class ModuleStream extends stream.Readable {	
 	constructor(module, channels, samplerate, maxFramesPerChunk) {
