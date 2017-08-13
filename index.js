@@ -66,13 +66,15 @@ OpenMPT_Module.prototype = {
 		const mod_ptr = this.mod_ptr;
 		const get_command = native._openmpt_module_get_pattern_row_channel_command.bind(native, mod_ptr, patternId, rowId, channelId)
 		
+		const paramValue = get_command(5);
+		
 		const data = {
 			note: get_command(0),
 			instrument: get_command(1),
 			volumeEffect: get_command(2),
 			effect: get_command(3),
 			volume: get_command(4),
-			parameter: get_command(5),
+			parameter: (paramValue < 0)?(Math.abs(paramValue) + 0x80):paramValue, // emscripten tends to interpret high values as negative
 			string: native.Pointer_stringify(native._openmpt_module_format_pattern_row_channel(mod_ptr, patternId, rowId, channelId, 16, 0))
 		}
 		
